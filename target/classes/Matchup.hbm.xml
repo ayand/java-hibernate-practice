@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+ "-//Hibernate/Hibernate Mapping DTD//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+   <class name="Matchup" table="TypeChart">
+      <meta attribute="class-description">
+         This class contains the Matchup detail.
+      </meta>
+      <id name="id" type="int" column="id">
+         <generator class="native"/>
+      </id>
+      <property name="defenseType1" column="defenseType1" type="string"/>
+      <property name="defenseType2" column="defenseType2" type="string"/>
+      <property name="attackType" column="attackType" type="string"/>
+      <property name="effect" column="effect" type="double"/>
+   </class>
+</hibernate-mapping>
