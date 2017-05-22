@@ -21,10 +21,12 @@ public class Driver {
             System.out.println("Please supply at least two arguments");
             System.exit(0);
         }
-        if (args[0].equals("-p")) {
+        if (args[0].equals("-pf")) {
             int id = Integer.parseInt(args[1]);
-            Pokemon p = getPokemon(id);
-            System.out.println(p);
+            List<Pokemon> p = getPokemonFormes(id);
+            for (Pokemon pokemon: p) {
+                System.out.println(pokemon);
+            }
         } else if (args[0].equals("-r")) {
             int userID = Integer.parseInt(args[1]);
             int pokemonID = Integer.parseInt(args[2]);
@@ -57,6 +59,10 @@ public class Driver {
             Pokemon updatedPokemon = changePokemonStat(pokemonID, stat, newStat);
             Pokemon p = getPokemon(pokemonID);
             System.out.println(p);
+        } else if (args[0].equals("-p")) {
+            int id = Integer.parseInt(args[1]);
+            Pokemon p = getPokemon(id);
+            System.out.println(p);
         }
     }
 
@@ -79,6 +85,33 @@ public class Driver {
             //System.exit(0);
         } finally {
             return p;
+        }
+    }
+
+    public static List<Pokemon> getPokemonFormes(int id) {
+        List p = null;
+        ArrayList<Pokemon> pokemon = new ArrayList<>();
+        try {
+            SessionFactory factory = new Configuration().configure()
+                .buildSessionFactory();
+            Session session = factory.openSession();
+            Transaction tx = session.beginTransaction();
+            p = session.createCriteria(Pokemon.class)
+                    .add(Restrictions.eq("ndex", id))
+                    .list();
+            for (Object o: p) {
+                Pokemon a = (Pokemon) o;
+                pokemon.add(a);
+            }
+            //return p;
+            tx.commit();
+            session.close();
+            factory.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+            //System.exit(0);
+        } finally {
+            return pokemon;
         }
     }
 

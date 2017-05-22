@@ -12,6 +12,8 @@ public class Pokemon {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+    private int ndex;
+    private String forme;
     private String species;
     private String type1;
     private String type2;
@@ -29,11 +31,13 @@ public class Pokemon {
 
     public Pokemon() {}
 
-    public Pokemon(int id, String species, String type1, String type2,
+    public Pokemon(int id, int ndex, String forme, String species, String type1, String type2,
         String ability1, String ability2, String abilityH, int hp, int attack,
         int defense, int spattack, int spdefense, int speed, String eggGroup1,
         String eggGroup2) {
         this.id = id;
+        this.ndex = ndex;
+        this.forme = forme;
         this.species = species;
         this.type1 = type1;
         this.type2 = type2;
@@ -58,12 +62,28 @@ public class Pokemon {
         this.id = id;
     }
 
+    public int getNdex() {
+        return ndex;
+    }
+
+    public void setNdex(int ndex) {
+        this.ndex = ndex;
+    }
+
     public String getSpecies() {
         return species;
     }
 
     public void setSpecies(String species) {
         this.species = species;
+    }
+
+    public String getForme() {
+        return forme;
+    }
+
+    public void setForme(String forme) {
+        this.forme = forme;
     }
 
     public String getType1() {
@@ -179,6 +199,8 @@ public class Pokemon {
         String line6 = "Special Attack: " + spattack  + "\n";
         String line7 = "Special Defense: " + spdefense  + "\n";
         String line8 = "Speed: " + speed  + "\n";
-        return line1 + line2 + line3 + line4 + line5 + line6 + line7 + line8;
+        String line9 = "Forme: " + forme;
+        return line1 + line2 + line3 + line4 + line5 + line6 + line7 + line8
+            + line9;
     }
 }
