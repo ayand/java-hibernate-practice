@@ -28,5 +28,6 @@
    <mapping class="com.ayandas.hibernatepractice.Pokemon"/>
    <mapping class="com.ayandas.hibernatepractice.User"/>
    <mapping class="com.ayandas.hibernatepractice.Matchup"/>
+   <mapping class="com.ayandas.hibernatepractice.Review"/>
 </session-factory>
 </hibernate-configuration>
